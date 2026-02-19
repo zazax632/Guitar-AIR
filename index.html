@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Guitar Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://unpkg.com/tone/build/Tone.js"></script>
+</head>
+<body>
+
+<h1 id="title">🎸 กด "เปิดเสียง" แล้วชู 5 นิ้วเพื่อเริ่ม</h1>
+
+<div id="audio-unlock-banner">
+  <button id="unlock-btn" onclick="unlockAndDismiss()">
+    🔊 กดที่นี่ก่อน — เปิดเสียง
+  </button>
+</div>
+
+<div class="controls">
+  <button onclick="startRecording()">🎥 บันทึก</button>
+  <button onclick="stopRecording()">⏹ หยุดบันทึก</button>
+</div>
+
+<div id="error-msg" style="display:none;"></div>
+<div id="countdown-overlay"></div>
+
+<div id="camera-container">
+  <video id="video" autoplay playsinline></video>
+  <canvas id="canvas"></canvas>
+</div>
+
+<div id="lyrics"></div>
+
+<script src="app.js"></script>
+<script>
+async function unlockAndDismiss() {
+  await ensureAudio();
+  document.getElementById("audio-unlock-banner").style.display = "none";
+}
+</script>
+</body>
+</html>
