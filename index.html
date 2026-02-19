@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Guitar Pro</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MediaPipe Hands เท่านั้น — ไม่ต้องใช้ camera_utils แล้ว -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://unpkg.com/tone/build/Tone.js"></script>
+</head>
+<body>
+
+<h1 id="title">🎸 Virtual Guitar</h1>
+
+<div class="controls">
+  <button onclick="startRecording()">🎥 Start Recording</button>
+  <button onclick="stopRecording()">⏹ Stop Recording</button>
+</div>
+
+<div id="error-msg" style="color:red; display:none; margin:10px;"></div>
+
+<video id="video" autoplay playsinline style="display:none;"></video>
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<div id="lyrics"></div>
+
+<!-- ไม่ใช้ type="module" เพราะทำให้ startRecording/stopRecording ไม่ถูก expose -->
+<script src="app.js"></script>
+
+</body>
+</html>
