@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Virtual Guitar Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+<script src="https://unpkg.com/tone/build/Tone.js"></script>
+
+</head>
+<body>
+
+<h1 id="title">🎸 Virtual Guitar</h1>
+
+<div class="controls">
+  <button onclick="startRecording()">🎥 Start Recording</button>
+  <button onclick="stopRecording()">⏹ Stop Recording</button>
+</div>
+
+<!-- แสดง error ให้ผู้ใช้รู้ -->
+
+<div id="error-msg" style="color:red; display:none; margin:10px;"></div>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas" width="400" height="300"></canvas>
+
+<div id="lyrics"></div>
+
+<!-- ✅ FIX #1: เพิ่ม type="module" เพื่อรองรับ top-level await -->
+
+<script src="app.js" type="module"></script>
+
+</body>
+</html>
