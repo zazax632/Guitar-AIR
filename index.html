@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🎸 Virtual Guitar Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/vision_bundle.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/tone/build/Tone.js"></script>
+</head>
+<body>
+<h1 id="title">⏳ กำลังโหลด MediaPipe Tasks…</h1>
+<div id="audio-unlock-banner">
+  <button id="unlock-btn" onclick="unlockAndDismiss()">🔊 กดที่นี่ก่อน — เปิดเสียง</button>
+</div>
+<div class="controls">
+  <button onclick="startRecording()">🎥 บันทึก</button>
+  <button onclick="stopRecording()">⏹ หยุดบันทึก</button>
+</div>
+<div id="error-msg" style="display:none;"></div>
+<button id="retry-btn" onclick="retryInit()">🔄 ลองใหม่</button>
+<div id="countdown-overlay"></div>
+<div id="camera-container">
+  <video id="video" autoplay playsinline muted></video>
+  <canvas id="canvas"></canvas>
+</div>
+<div id="detection-panel">
+  <div id="gesture-box"><span class="panel-label">✋ GESTURE</span><span id="gesture-text">—</span></div>
+  <div id="object-box"><span class="panel-label">🔍 OBJECT</span><span id="object-text">—</span></div>
+</div>
+<div id="lyrics"></div>
+<script src="app.js"></script>
+<script>
+async function unlockAndDismiss() {
+  await ensureAudio();
+  document.getElementById("audio-unlock-banner").style.display = "none";
+}
+</script>
+</body>
+</html>
