@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎸 Virtual Guitar Pro</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎸</text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <h1 id="title">INITIALIZING SYSTEM...</h1>
+
+  <!-- FIX MEDIUM-3: ปุ่ม disabled จนกว่า module พร้อม ป้องกัน window.X undefined -->
+  <div id="audio-unlock-banner">
+    <button id="unlock-btn" disabled onclick="window.unlockAndDismiss?.()">
+      START SESSION
+    </button>
+  </div>
+
+  <div class="controls">
+    <button disabled id="btn-record" onclick="window.startRecording?.()">
+      <span>🔴</span> RECORD
+    </button>
+    <button disabled id="btn-stop-rec" onclick="window.stopRecording?.()">
+      <span>⏹</span> STOP
+    </button>
+    <button id="btn-amp" onclick="window.toggleAmpMode?.()">
+      <span>⚡</span> MODE: ACOUSTIC
+    </button>
+  </div>
+
+  <div id="error-msg" style="display:none;"></div>
+  <!-- FIX MEDIUM-3: retry ก็ใช้ ?. เช่นกัน -->
+  <button id="retry-btn" style="display:none;" onclick="window.retryInit?.()">REINITIALIZE SYSTEM</button>
+  <div id="countdown-overlay"></div>
+
+  <div id="camera-container">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div id="detection-panel">
+    <div id="gesture-box">
+      <span class="panel-label">✋ GESTURE</span>
+      <span id="gesture-text">—</span>
+    </div>
+    <div id="object-box">
+      <span class="panel-label">🔍 OBJECT</span>
+      <span id="object-text">—</span>
+    </div>
+  </div>
+
+  <div id="lyrics"></div>
+
+  <!-- type="module" ให้ app.js ใช้ dynamic import() -->
+  <script type="module" src="app.js"></script>
+
+</body>
+
+</html>
